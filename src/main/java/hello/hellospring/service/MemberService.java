@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.*;
 
 
-@Service
+//@Service
 public class MemberService {
 
     private final MemberRepository memberRepository;
@@ -17,7 +17,8 @@ public class MemberService {
     // 서비스에서 직접 MemberRepository 안넣음.
     // 외부에서 넣음
     // 의존성 주입이걸 뜻함.
-    @Autowired
+
+
     public MemberService(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
     }
