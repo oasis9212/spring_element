@@ -3,33 +3,26 @@ package hello.hellospring.service;
 import hello.hellospring.domain.Member;
 import hello.hellospring.repository.MemberRepository;
 import hello.hellospring.repository.MemoryMemberRepository;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Optional;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.assertj.core.api.Assertions.*;
+//  @Transactional 인서트 쿼리를 실행한 뒤에 롤백을 시켜버린다.
+// 테스트 케이스만 적용함.
+@SpringBootTest
+@Transactional
+class MemberServiceIntegrationTest {
 
-class MemberServiceTest {
-
+    @Autowired
     MemberRepository memberRepository;
+    @Autowired
     MemberService memberService;
-
-
-    // 테스트를
-    @BeforeEach
-    public  void beforeEach(){
-        memberRepository= new MemoryMemberRepository();
-        memberService= new MemberService(memberRepository);
-    }
-
-    @AfterEach
-    public  void afterEach(){
-        memberRepository.clearStore();
-    }
 
     @Test
     void 회원가입() {
@@ -60,23 +53,10 @@ class MemberServiceTest {
 
         assertThat(e.getMessage()).isEqualTo("이미 존재한 회원 입니다.123123 ");
 
-//        try{
-//            memberService.join(member2);
-//            fail();
-//        }catch (IllegalStateException e){
-//        assertThat(e.getMessage()).isEqualTo("이미 존재한 회원 입니;당.!23123");
-//        }
-
 
 
         //then
     }
 
-    @Test
-    void 맴버_찾기() {
-    }
 
-    @Test
-    void 맴버_하나_찾기() {
-    }
 }
