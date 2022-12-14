@@ -14,11 +14,11 @@ class MemoryMemberRepositoryTest {
     MemberRepository repo = new MemoryMemberRepository();
     // 테스트를 전체 실행 했을 경우 순서의 보장은 절때 안된다.
     // 또한 하나의 매소드를 발휘할때 선언한 데이터가 그대로 남아 있다. 메소드 돌릴때마다 제거를 해야한다.
-    @AfterEach
-    // 테스트를 거친후의 콜백
-    public void afterEacch(){
-        repo.clearStore();
-    }
+//    @AfterEach
+//    // 테스트를 거친후의 콜백
+//    public void afterEacch(){
+//        repo.clearStore();
+//    }
 
     @Test
     public void save(){
